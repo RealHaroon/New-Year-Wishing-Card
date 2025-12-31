@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Happy New Year 2026 — M Haroon Abbas</title>
+  <style>
+    :root{
+      --bg0:#060812;
+      --bg1:#070a1a;
+      --neon1:#00e5ff;
+      --neon2:#b100ff;
+      --neon3:#00ff85;
+      --text:#e9f3ff;
+      --muted:rgba(233,243,255,.72);
+      --glass:rgba(255,255,255,.08);
+      --stroke:rgba(255,255,255,.14);
+      --shadow: 0 0 18px rgba(0,229,255,.35), 0 0 42px rgba(177,0,255,.25);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 20% 10%, rgba(177,0,255,.20), transparent 55%),
+                  radial-gradient(900px 700px at 80% 20%, rgba(0,229,255,.18), transparent 60%),
+                  radial-gradient(900px 900px at 55% 85%, rgba(0,255,133,.10), transparent 60%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow:hidden;
+    }
+
+    /* Canvas fireworks layer */
+    canvas#fx{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      z-index:0;
+      display:block;
+    }
+
+    /* Subtle animated neon haze */
+    .haze{
+      position:fixed;
+      inset:-20%;
+      z-index:1;
+      pointer-events:none;
+      filter: blur(30px);
+      opacity:.55;
+      background:
+        radial-gradient(closest-side at 20% 30%, rgba(0,229,255,.25), transparent 60%),
+        radial-gradient(closest-side at 75% 35%, rgba(177,0,255,.22), transparent 62%),
+        radial-gradient(closest-side at 50% 80%, rgba(0,255,133,.12), transparent 60%);
+      animation: drift 10s ease-in-out infinite alternate;
+    }
+    @keyframes drift{
+      from{ transform: translate3d(-2%, -1%, 0) scale(1.02); }
+      to  { transform: translate3d(2%, 1%, 0) scale(1.06); }
+    }
+
+    /* Content */
+    .wrap{
+      position:relative;
+      z-index:2;
+      height:100%;
+      display:grid;
+      place-items:center;
+      padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+               max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .card{
+      width:min(920px, 92vw);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      border:1px solid var(--stroke);
+      border-radius: 22px;
+      padding: clamp(18px, 4vw, 34px);
+      box-shadow: 0 12px 60px rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .topline{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom: 14px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background: rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.14);
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing:.2px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(90deg, var(--neon1), var(--neon2));
+      box-shadow: var(--shadow);
+    }
+
+    h1{
+      margin: 8px 0 6px;
+      font-size: clamp(30px, 5.2vw, 64px);
+      line-height:1.02;
+      letter-spacing:-.02em;
+      text-shadow: 0 0 18px rgba(0,229,255,.22), 0 0 36px rgba(177,0,255,.14);
+    }
+    .from{
+      margin: 0 0 14px;
+      font-size: clamp(16px, 2.4vw, 22px);
+      color: var(--muted);
+    }
+
+  .neon{
+  --bg-size: 300%;
+  background: linear-gradient(90deg, var(--neon1), var(--neon2), var(--neon3), var(--neon1))
+              0 50% / var(--bg-size) 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  animation: neonSweep 6s linear infinite;
+  filter: drop-shadow(0 0 14px rgba(0,229,255,.18));
+}
+
+@keyframes neonSweep{
+  to { background-position: var(--bg-size) 50%; }
+}
+@media (prefers-reduced-motion: reduce){
+  .neon{ animation: none; }
+}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    @media (max-width: 820px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.20);
+      padding: 16px;
+    }
+
+    .hint{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height:1.5;
+    }
+
+    .links{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 10px;
+    }
+    a.link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      text-decoration:none;
+      color: var(--text);
+      border:1px solid rgba(255,255,255,.14);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+    }
+    a.link:hover{
+      transform: translateY(-1px);
+      border-color: rgba(0,229,255,.35);
+      box-shadow: 0 0 0 3px rgba(0,229,255,.10), 0 0 26px rgba(177,0,255,.20);
+    }
+    .handle{
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .btnrow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    button{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.25);
+      color:var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor:pointer;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    button:hover{
+      transform: translateY(-1px);
+      border-color: rgba(177,0,255,.35);
+      box-shadow: 0 0 0 3px rgba(177,0,255,.10), 0 0 26px rgba(0,229,255,.16);
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce){
+      .haze{ animation:none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="haze" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <section class="card" role="region" aria-label="New year greeting">
+      <div class="topline">
+        <div class="badge"><span class="dot"></span> Neon Celebration Mode</div>
+        <div class="badge" id="clock">Loading time…</div>
+      </div>
+
+      <h1><span class="neon">Happy New Year 2026</span></h1>
+      <p class="from">From <strong>M Haroon Abbas</strong></p>
+
+      <div class="grid">
+        <div class="panel">
+          <p class="hint">
+            Tap/click anywhere to launch fireworks. On phones, use one finger (multi-touch supported).
+            If performance drops, use “Low particles”.
+          </p>
+          <div class="btnrow">
+            <button id="burst">Burst</button>
+            <button id="low">Low particles</button>
+            <button id="high">High particles</button>
+            <button id="clear">Clear</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <p class="hint">Find me here:</p>
+          <div class="links">
+            <a class="link" href="https://github.com/RealHaroon" target="_blank" rel="noopener">
+              <span>GitHub <span class="handle">@RealHaroon</span></span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a class="link" href="https://www.instagram.com/ig_haroon/" target="_blank" rel="noopener">
+              <span>Instagram <span class="handle">@ig_haroon</span></span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Fireworks: lightweight canvas particle bursts on pointer events (mouse/touch)
+    // Inspired by common "fireworks on click" canvas patterns using requestAnimationFrame. 
+    // (See examples in tutorials using particles and a fading trail.) 
+    // Source concepts: https://codingartistweb.com/2022/10/fireworks-on-click-javascript-canvas/ and similar. 
+
+    const canvas = document.getElementById("fx");
+    const ctx = canvas.getContext("2d", { alpha: true });
+
+    let DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1)); // cap for performance
+    let w = 0, h = 0;
+
+    function resize(){
+      DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      w = Math.floor(window.innerWidth);
+      h = Math.floor(window.innerHeight);
+      canvas.width = Math.floor(w * DPR);
+      canvas.height = Math.floor(h * DPR);
+      canvas.style.width = w + "px";
+      canvas.style.height = h + "px";
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    window.addEventListener("resize", resize, { passive:true });
+    resize();
+
+    const state = {
+      particles: [],
+      particleCount: 90,
+      gravity: 0.06,
+      friction: 0.985,
+      trailAlpha: 0.18
+    };
+
+    function rand(min, max){ return Math.random() * (max - min) + min; }
+    function pick(arr){ return arr[(Math.random() * arr.length) | 0]; }
+
+    const palette = [
+      "#00e5ff", "#b100ff", "#00ff85",
+      "#ffd400", "#ff3df2", "#7c4dff"
+    ];
+
+    class Particle{
+      constructor(x, y, color){
+        this.x = x;
+        this.y = y;
+        const angle = rand(0, Math.PI * 2);
+        const speed = rand(2.0, 7.2);
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed;
+        this.radius = rand(1.0, 2.2);
+        this.life = rand(40, 80);
+        this.alpha = 1;
+        this.color = color;
+      }
+      step(){
+        this.vx *= state.friction;
+        this.vy = this.vy * state.friction + state.gravity;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life -= 1;
+        this.alpha = Math.max(0, this.life / 80);
+        return this.life > 0;
+      }
+      draw(){
+        ctx.globalAlpha = this.alpha;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = 18;
+        ctx.shadowColor = this.color;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
+      }
+    }
+
+    function burst(x, y){
+      const color = pick(palette);
+      const count = state.particleCount;
+      for(let i=0;i<count;i++){
+        state.particles.push(new Particle(x, y, color));
+      }
+      // Add a second color ring for a "neon" look
+      const color2 = pick(palette);
+      for(let i=0;i<Math.floor(count * 0.35);i++){
+        state.particles.push(new Particle(x, y, color2));
+      }
+    }
+
+    function loop(){
+      // Fade the previous frame to create trails
+      ctx.fillStyle = `rgba(0,0,0,${state.trailAlpha})`;
+      ctx.fillRect(0,0,w,h);
+
+      const next = [];
+      for(const p of state.particles){
+        if(p.step()){
+          p.draw();
+          next.push(p);
+        }
+      }
+      state.particles = next;
+      requestAnimationFrame(loop);
+    }
+    // Start with a clean transparent frame then loop
+    ctx.clearRect(0,0,w,h);
+    loop();
+
+    // Pointer interaction (touch + mouse)
+    function pointerToCanvas(e){
+      const rect = canvas.getBoundingClientRect();
+      return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    }
+
+    canvas.addEventListener("pointerdown", (e) => {
+      const p = pointerToCanvas(e);
+      burst(p.x, p.y);
+    }, { passive:true });
+
+    canvas.addEventListener("pointermove", (e) => {
+      // Optional: if pressing/dragging, sprinkle smaller bursts
+      if(e.buttons === 1){
+        const p = pointerToCanvas(e);
+        if(Math.random() < 0.35) burst(p.x, p.y);
+      }
+    }, { passive:true });
+
+    // Buttons
+    document.getElementById("burst").addEventListener("click", () => {
+      for(let i=0;i<5;i++){
+        burst(rand(80, w-80), rand(80, h-120));
+      }
+    });
+    document.getElementById("low").addEventListener("click", () => state.particleCount = 55);
+    document.getElementById("high").addEventListener("click", () => state.particleCount = 110);
+    document.getElementById("clear").addEventListener("click", () => {
+      state.particles.length = 0;
+      ctx.clearRect(0,0,w,h);
+    });
+
+    // Clock
+    const clock = document.getElementById("clock");
+    function tick(){
+      const now = new Date();
+      clock.textContent = now.toLocaleString(undefined, {
+        weekday: "short", year:"numeric", month:"short", day:"2-digit",
+        hour:"2-digit", minute:"2-digit"
+      });
+    }
+    tick();
+    setInterval(tick, 1000 * 20);
+  </script>
+</body>
+</html>
